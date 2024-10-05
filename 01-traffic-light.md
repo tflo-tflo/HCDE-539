@@ -1,9 +1,9 @@
 [Index](index.html)
 
 # 1: Traffic Lights
+Create a simulation of a traffic light.
 
 ## Source files
-* [Arduino Sketch file](./source-files/01_traffic_light/01_traffic_light.ino)
 * [Tinker source](https://www.tinkercad.com/things/753FnYBbkBY-01-traffic-light/editel?returnTo=https%3A%2F%2Fwww.tinkercad.com%2Fdashboard%2Fdesigns%2Fcircuits&sharecode=ZMm7zYvMayxsUarfw0B2N4YVmkvtIUCHHYaLj04mImo)
 * [Schematic (PDF)](./source-files/01-schedmatic.pdf)
 
@@ -22,6 +22,41 @@
 
 > Circuit view
 ![](./source-files/01_traffic_light/01-circuit-view.png)
+
+## Code
+
+``` Processing
+const int ledRed = 12;
+const int ledYellow = 11;
+const int ledGreen = 10;
+
+// the setup function runs once when you press reset or power the board
+void setup() {
+  // initialize digital led pins as an output.
+  pinMode(ledRed, OUTPUT);
+  pinMode(ledYellow, OUTPUT);
+  pinMode(ledGreen, OUTPUT);
+}
+
+// the loop function runs over and over again forever
+void loop() {
+  // turn green light on for 4 secs, then turn off
+  digitalWrite(ledGreen, HIGH);
+  delay(4000);
+  digitalWrite(ledGreen, LOW);
+
+  // turn green light on for 4 secs, then turn off
+  digitalWrite(ledYellow, HIGH);
+  delay(4000);     
+  digitalWrite(ledYellow, LOW);
+
+  // turn green light on for 4 secs, then turn off
+  digitalWrite(ledRed, HIGH);
+  delay(4000);
+  digitalWrite(ledRed, LOW);
+}
+```
+
 
 ## Process
 

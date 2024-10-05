@@ -11,9 +11,9 @@
         <div class="container">
           <p><a href="index.html">Index</a></p>
 <h1>1: Traffic Lights</h1>
+<p>Create a simulation of a traffic light.</p>
 <h2>Source files</h2>
 <ul>
-<li><a href="./source-files/01_traffic_light/01_traffic_light.ino">Arduino Sketch file</a></li>
 <li><a href="https://www.tinkercad.com/things/753FnYBbkBY-01-traffic-light/editel?returnTo=https%3A%2F%2Fwww.tinkercad.com%2Fdashboard%2Fdesigns%2Fcircuits&sharecode=ZMm7zYvMayxsUarfw0B2N4YVmkvtIUCHHYaLj04mImo">Tinker source</a></li>
 <li><a href="./source-files/01-schedmatic.pdf">Schematic (PDF)</a></li>
 </ul>
@@ -38,6 +38,37 @@
 <p>Circuit view
 <img src="./source-files/01_traffic_light/01-circuit-view.png" alt=""></p>
 </blockquote>
+<h2>Code</h2>
+<pre><code class="language-Processing">const int ledRed = 12;
+const int ledYellow = 11;
+const int ledGreen = 10;
+
+// the setup function runs once when you press reset or power the board
+void setup() {
+  // initialize digital led pins as an output.
+  pinMode(ledRed, OUTPUT);
+  pinMode(ledYellow, OUTPUT);
+  pinMode(ledGreen, OUTPUT);
+}
+
+// the loop function runs over and over again forever
+void loop() {
+  // turn green light on for 4 secs, then turn off
+  digitalWrite(ledGreen, HIGH);
+  delay(4000);
+  digitalWrite(ledGreen, LOW);
+
+  // turn green light on for 4 secs, then turn off
+  digitalWrite(ledYellow, HIGH);
+  delay(4000);     
+  digitalWrite(ledYellow, LOW);
+
+  // turn green light on for 4 secs, then turn off
+  digitalWrite(ledRed, HIGH);
+  delay(4000);
+  digitalWrite(ledRed, LOW);
+}
+</code></pre>
 <h2>Process</h2>
 <ol>
 <li>I went to Arduino&#39;s documentation to get a better view of the pinout diagram because I wanted to know how to reference a particular pin in the code. I didn&#39;t find anything quick so I asked Claude.ai &quot;How do you refrence a specific pin on an Arduino board in your code&quot;</li>
