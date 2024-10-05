@@ -28,7 +28,9 @@ function convertMarkdownToHTML(inputPath, outputPath) {
           <link rel="stylesheet" href="styles.css"> 
       </head>
       <body>
+        <div class="container">
           ${htmlContent}
+        </div>
       </body>
       </html>
     `;
