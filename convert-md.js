@@ -26,6 +26,8 @@ function convertMarkdownToHTML(inputPath, outputPath) {
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
           <title>${path.basename(outputPath, '.html')}</title>
           <link rel="stylesheet" href="styles.css"> 
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.27.0/themes/prism.min.css" />
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.27.0/prism.min.js"></script>
       </head>
       <body>
         <div class="container">

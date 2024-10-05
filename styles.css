@@ -1,5 +1,12 @@
 /* Import the Atkinson Hyperlegible font from Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@100;400&display=swap');
+
+.ibm-plex-mono-regular {
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+  }  
 
 body {
     font-family: 'Atkinson Hyperlegible', sans-serif; /* Set the font */
@@ -15,6 +22,7 @@ body {
 .container {
     max-width: 75ch; /* Maximum width of 75 characters */
     margin: 0 auto; /* Center the container */
+    padding-bottom: 8rem;
 }
 
 /* Optional styling for headings */
@@ -30,4 +38,13 @@ p {
 
 img {
    width: 100%; 
+}
+
+/* Styles for <code> blocks */
+code {
+    background-color: hsl(0, 0%, 93%);  /* Slightly lighter background */
+    color: #bf005c;              /* Light text color */
+    padding: 0.1em;        /* Padding for spacing */
+    border-radius: 4px;          /* Rounded corners */
+    font-family: 'IBM Plex Mono', monospace; /* Consistent font */
 }

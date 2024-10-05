@@ -25,7 +25,7 @@ Create a simulation of a traffic light.
 
 ## Code
 
-``` Processing
+``` JS
 const int ledRed = 12;
 const int ledYellow = 11;
 const int ledGreen = 10;
