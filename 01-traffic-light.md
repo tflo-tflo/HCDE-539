@@ -3,7 +3,9 @@
 # 1: Traffic Lights
 
 ## Source files
-* Arduino Sketch file: [01-traffic-light.ino](./source-files/01_traffic_light/01_traffic_light.ino)
+* [Arduino Sketch file](./source-files/01_traffic_light/01_traffic_light.ino)
+* [Tinker source](https://www.tinkercad.com/things/753FnYBbkBY-01-traffic-light/editel?returnTo=https%3A%2F%2Fwww.tinkercad.com%2Fdashboard%2Fdesigns%2Fcircuits&sharecode=ZMm7zYvMayxsUarfw0B2N4YVmkvtIUCHHYaLj04mImo)
+* [Schematic (PDF)](./source-files/01-schedmatic.pdf)
 
 ## Documentation
 > Top down view of breadboard and Arduino
@@ -18,6 +20,9 @@
 > Helpful Pinout diagram
 ![](https://content.arduino.cc/assets/A000066-pinout.png)
 
+> Circuit view
+![](./source-files/01_traffic_light/01-circuit-view.png)
+
 ## Process
 
 1. I went to Arduino's documentation to get a better view of the pinout diagram because I wanted to know how to reference a particular pin in the code. I didn't find anything quick so I asked Claude.ai "How do you refrence a specific pin on an Arduino board in your code"
@@ -29,3 +34,4 @@
 4. I duplicated the example Blink file but added three variables, one for each light
 5. For the breadboard, I referenced the PDF in the class syllabus, I liked how orderly they had lined all the circuits
 6. I adjusted the timing and removed the delays
+7. Did the schematic and circuit view documentation last, I'm guessing as projects get more complicated it might be good to plan it out in Tinkercad first
