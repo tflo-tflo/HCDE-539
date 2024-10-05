@@ -1,0 +1,22 @@
+{
+  "name": "hcde-539",
+  "version": "1.0.0",
+  "description": "UW HCDE Physical Computing class documentation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/tflo-tflo/HCDE-539.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tflo-tflo/HCDE-539/issues"
+  },
+  "homepage": "https://github.com/tflo-tflo/HCDE-539#readme",
+  "dependencies": {
+    "imagemagick": "^0.1.3"
+  }
+}
