@@ -1,0 +1,29 @@
+/* Import the Atkinson Hyperlegible font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible&display=swap');
+
+body {
+    font-family: 'Atkinson Hyperlegible', sans-serif; /* Set the font */
+    font-size: 16px; /* Base font size */
+    line-height: 1.5; /* Improve readability */
+    margin: 0;
+    padding: 20px; /* Add some padding around the content */
+    background-color: #f9f9f9; /* Light background color */
+    color: #333; /* Dark text color */
+}
+
+/* Container to limit the width of the text */
+.container {
+    max-width: 75ch; /* Maximum width of 75 characters */
+    margin: 0 auto; /* Center the container */
+}
+
+/* Optional styling for headings */
+h1, h2, h3, h4, h5, h6 {
+    color: #2c3e50; /* Darker color for headings */
+    margin-top: 1.5em; /* Spacing above headings */
+}
+
+/* Optional styling for paragraphs */
+p {
+    margin-bottom: 1em; /* Spacing between paragraphs */
+}
