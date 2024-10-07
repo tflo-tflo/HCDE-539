@@ -1,4 +1,43 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>01-traffic-light</title><link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.27.0/themes/prism.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.27.0/prism.min.js"></script></head><body><div class="container"><p><a href="index.html">Index</a></p><h1>1: Traffic Lights</h1><p>Create a simulation of a traffic light.</p><h2>Source files</h2><ul><li><a href="https://www.tinkercad.com/things/753FnYBbkBY-01-traffic-light/editel?returnTo=https%3A%2F%2Fwww.tinkercad.com%2Fdashboard%2Fdesigns%2Fcircuits&sharecode=ZMm7zYvMayxsUarfw0B2N4YVmkvtIUCHHYaLj04mImo">Tinker source</a></li><li><a href="./source-files/01-schedmatic.pdf">Schematic (PDF)</a></li></ul><h2>Documentation</h2><blockquote><p>Top down view of breadboard and Arduino <img src="./assets/01-00001.jpg" alt=""></p></blockquote><blockquote><p>Jumper wires connected to ground, digital pins 10 through 12 <img src="./assets/01-00002.jpg" alt=""></p></blockquote><blockquote><p>Sequence of three closed circuits, one for each traffic light <img src="./assets/01-00003.jpg" alt=""></p></blockquote><blockquote><p>Helpful Pinout diagram <img src="https://content.arduino.cc/assets/A000066-pinout.png" alt=""></p></blockquote><blockquote><p>Circuit view <img src="./source-files/01_traffic_light/01-circuit-view.png" alt=""></p></blockquote><h2>Code</h2><pre><code class="language-JS">const int ledRed = 12;
+
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>01-traffic-light</title>
+          <link rel="stylesheet" href="styles.css"> 
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.27.0/themes/prism.min.css" />
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.27.0/prism.min.js"></script>
+      </head>
+      <body>
+        <div class="container">
+          <p><a href="index.html">Index</a></p>
+<h1>1: Traffic Lights</h1>
+<p>Create a simulation of a traffic light.</p>
+<h2>Source files</h2>
+<ul>
+<li><a href="https://www.tinkercad.com/things/753FnYBbkBY-01-traffic-light/editel?returnTo=https%3A%2F%2Fwww.tinkercad.com%2Fdashboard%2Fdesigns%2Fcircuits&sharecode=ZMm7zYvMayxsUarfw0B2N4YVmkvtIUCHHYaLj04mImo">Tinker source</a></li>
+<li><a href="./source-files/01-schedmatic.pdf">Schematic (PDF)</a></li>
+</ul>
+<h2>Documentation</h2>
+<blockquote>
+<p>Top down view of breadboard and Arduino
+<img src="./assets/01-00001.webp" alt=""></p>
+</blockquote>
+<blockquote>
+<p>Jumper wires connected to ground, digital pins 10 through 12
+<img src="./assets/01-00002.webp" alt=""></p>
+</blockquote>
+<blockquote>
+<p>Sequence of three closed circuits, one for each traffic light
+<img src="./assets/01-00003.webp" alt=""></p>
+</blockquote>
+<blockquote>
+<p>Circuit view
+<img src="./source-files/01_traffic_light/01-circuit-view.png" alt=""></p>
+</blockquote>
+<h2>Code</h2>
+<pre><code class="language-JS">const int ledRed = 12;
 const int ledYellow = 11;
 const int ledGreen = 10;
 
@@ -33,7 +72,21 @@ void loop() {
   delay(4000);
   digitalWrite(ledRed, LOW);
 }
-</code></pre><h2>Process</h2><ol><li>I went to Arduino&#39;s documentation to get a better view of the pinout diagram because I wanted to know how to reference a particular pin in the code. I didn&#39;t find anything quick so I asked Claude.ai &quot;How do you refrence a specific pin on an Arduino board in your code&quot;</li><li>Their breakdown was helpful:<ol><li>Digital pins uses the pin number directly (e.g. <code>13</code>)</li><li>Analog pins has an <code>A</code> prefix</li><li>Built-in LEDs uses <code>LED_BUILTIN</code></li></ol></li><li>For future reference, here&#39;s their <a href="https://docs.arduino.cc/language-reference/">language documentation</a></li><li>I duplicated the example Blink file but added three variables, one for each light</li><li>For the breadboard, I referenced the PDF in the class syllabus, I liked how orderly they had lined all the circuits</li><li>I adjusted the timing and removed the delays</li><li>Did the schematic and circuit view documentation last, I&#39;m guessing as projects get more complicated it might be good to plan it out in Tinkercad first</li></ol></div></body></html>, I&#39;m guessing as projects get more complicated it might be good to plan it out in Tinkercad first</li>
+</code></pre>
+<h2>Process</h2>
+<ol>
+<li>I went to Arduino&#39;s documentation to get a better view of the pinout diagram because I wanted to know how to reference a particular pin in the code. I didn&#39;t find anything quick so I asked Claude.ai &quot;How do you refrence a specific pin on an Arduino board in your code&quot;</li>
+<li>Their breakdown was helpful:<ol>
+<li>Digital pins uses the pin number directly (e.g. <code>13</code>)</li>
+<li>Analog pins has an <code>A</code> prefix</li>
+<li>Built-in LEDs uses <code>LED_BUILTIN</code></li>
+</ol>
+</li>
+<li>For future reference, here&#39;s their <a href="https://docs.arduino.cc/language-reference/">language documentation</a> and their <a href="https://content.arduino.cc/assets/A000066-pinout.png">Pinout diagram</a></li>
+<li>I duplicated the example Blink file but added three variables, one for each light</li>
+<li>For the breadboard, I referenced the PDF in the class syllabus, I liked how orderly they had lined all the circuits</li>
+<li>I adjusted the timing and removed the delays</li>
+<li>Did the schematic and circuit view documentation last, I&#39;m guessing as projects get more complicated it might be good to plan it out in Tinkercad first</li>
 </ol>
 
         </div>
