@@ -12,8 +12,8 @@ if (!fs.existsSync(destDir)) {
     fs.mkdirSync(destDir);
 }
 
-// Function to convert HEIC to JPG
-function convertHEICtoJPG(inputPath, outputPath) {
+// Function to convert HEIC to WebP
+function convertHEICtoWebP(inputPath, outputPath) {
     return new Promise((resolve, reject) => {
         im.convert([inputPath, outputPath], function(err) {
             if (err) {
@@ -30,8 +30,8 @@ function convertHEICtoJPG(inputPath, outputPath) {
 const compressImages = async (filePath, outputFilePath) => {
     try {
         await sharp(filePath)
-            .resize({ width: 800 }) // Resize to a width of 800px (adjust as needed)
-            .toFormat('jpeg', { quality: 80 }) // Convert to JPG with 80% quality
+            .resize({ width: 1200 }) // Resize to a width of 1200px (adjust as needed)
+            .toFormat('webp', { quality: 80 }) // Convert to WebP with 80% quality
             .toFile(outputFilePath);
 
         console.log(`Compressed ${filePath} to ${outputFilePath}`);
@@ -40,7 +40,7 @@ const compressImages = async (filePath, outputFilePath) => {
     }
 };
 
-// Function to process all HEIC files and compress JPGs
+// Function to process all HEIC files and compress WebP images
 const processFiles = async () => {
     try {
         const files = fs.readdirSync(sourceDir);
@@ -50,16 +50,16 @@ const processFiles = async () => {
             const ext = path.extname(file).toUpperCase(); // Use toUpperCase for case-insensitivity
 
             if (ext === '.HEIC') { // Check for HEIC extension
-                const outputFileName = path.basename(file, ext) + '.jpg'; // Remove .HEIC and add .jpg
+                const outputFileName = path.basename(file, ext) + '.webp'; // Remove .HEIC and add .webp
                 const outputFilePath = path.join(sourceDir, outputFileName); // Save in source-assets
-                await convertHEICtoJPG(inputFilePath, outputFilePath);
+                await convertHEICtoWebP(inputFilePath, outputFilePath);
                 
-                // Compress the converted JPG and save to the assets folder
+                // Compress the converted WebP and save to the assets folder
                 const compressedFilePath = path.join(destDir, outputFileName);
-                await compressImages(outputFilePath, compressedFilePath); // Compress the newly created JPG
-            } else if (['.jpg', '.jpeg'].includes(ext)) {
+                await compressImages(outputFilePath, compressedFilePath); // Compress the newly created WebP
+            } else if (['.webp'].includes(ext)) {
                 const compressedFilePath = path.join(destDir, file); // Output same file name in assets
-                await compressImages(inputFilePath, compressedFilePath); // Compress existing JPGs
+                await compressImages(inputFilePath, compressedFilePath); // Compress existing WebP files
             }
         }
     } catch (error) {
