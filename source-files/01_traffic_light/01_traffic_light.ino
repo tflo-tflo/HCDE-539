@@ -21,13 +21,13 @@ void loop() {
   delay(4000);
   digitalWrite(ledGreen, LOW);
 
-  // turn green light on for 4 secs, then turn off
+  // turn yellow light on for 4 secs, then turn off
   digitalWrite(ledYellow, HIGH);
   Serial.println("Yellow");
   delay(4000);     
   digitalWrite(ledYellow, LOW);
 
-  // turn green light on for 4 secs, then turn off
+  // turn red light on for 4 secs, then turn off
   digitalWrite(ledRed, HIGH);
   Serial.println("Red");
   delay(4000);
