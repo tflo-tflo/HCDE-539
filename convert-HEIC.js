@@ -47,19 +47,18 @@ const processFiles = async () => {
 
         for (const file of files) {
             const inputFilePath = path.join(sourceDir, file);
-            const ext = path.extname(file).toUpperCase(); // Use toUpperCase for case-insensitivity
+            const ext = path.extname(file).toLowerCase(); // Use toLowerCase for case-insensitivity
 
-            if (ext === '.HEIC') { // Check for HEIC extension
-                const outputFileName = path.basename(file, ext) + '.webp'; // Remove .HEIC and add .webp
-                const outputFilePath = path.join(sourceDir, outputFileName); // Save in source-assets
+            if (ext === '.HEIC' || ext === '.png') { // Check for HEIC and PNG
+                const outputFileName = path.basename(file, ext) + '.webp'; // Remove extension and add .webp
+                const outputFilePath = path.join(destDir, outputFileName); // Save in destination directory
                 await convertHEICtoWebP(inputFilePath, outputFilePath);
                 
-                // Compress the converted WebP and save to the assets folder
-                const compressedFilePath = path.join(destDir, outputFileName);
-                await compressImages(outputFilePath, compressedFilePath); // Compress the newly created WebP
-            } else if (['.webp'].includes(ext)) {
+                // Compress the newly created WebP and save to the assets folder
+                await compressImages(outputFilePath, outputFilePath); // Compress the newly created WebP
+            } else if (ext === '.webp') { // Check for WEBP
                 const compressedFilePath = path.join(destDir, file); // Output same file name in assets
-                await compressImages(inputFilePath, compressedFilePath); // Compress existing WebP files
+                await compressImages(inputFilePath, compressedFilePath); // Compress existing WEBP files
             }
         }
     } catch (error) {
