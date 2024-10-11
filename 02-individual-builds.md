@@ -17,9 +17,6 @@ Light sensor (analog input): Connect the photo cell light sensor (CdS photoresis
 > Top down view of breadboard and Arduino
 ![](./assets/02-00001.webp)
 
-> Close up of breadboard connections
-![](./assets/02-00002.webp)
-
 > Circuit view
 ![](./assets/02-00003.webp)
 
