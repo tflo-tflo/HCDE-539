@@ -1,6 +1,6 @@
 [Index](index.html)
 
-# 1: Traffic Lights
+# 1: Traffic lights
 Create a simulation of a traffic light.
 
 ## Source files

@@ -5,5 +5,5 @@
 * Professor: Adi Azulay
 
 ## Assignments
-1. [Traffic Light](01-traffic-light.html)
+1. [Traffic light](01-traffic-light.html)
 2. [Individual builds](02-individual-builds.html)

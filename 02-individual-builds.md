@@ -17,16 +17,18 @@ Light sensor (analog input): Connect the photo cell light sensor (CdS photoresis
 > Top down view of breadboard and Arduino
 ![](./assets/02-00001.webp)
 
-> TK
+> Close up of breadboard connections
 ![](./assets/02-00002.webp)
 
 > Circuit view
 ![](./assets/02-00003.webp)
 
+> Schematic drawing
+![](./assets/02-00004.webp)
+
 ### Code
 
 ``` JS
-// 
 // Light sensor (analog input): Connect the photo cell light sensor (CdS photoresistor) to your Arduino. Have your sketch continuously print out the light level it detects on the serial monitor at 5 second intervals.
 
 const int sensorLight = A0; // Photo cell (CdS photoresistor) Product ID: 161
