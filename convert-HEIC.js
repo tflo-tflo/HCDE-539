@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const sharp = require('sharp');
 const im = require('imagemagick');
+const os = require('os');
 
 // Source and destination directories
 const sourceDir = path.join(__dirname, 'source-assets');
@@ -47,18 +48,29 @@ const processFiles = async () => {
 
         for (const file of files) {
             const inputFilePath = path.join(sourceDir, file);
-            const ext = path.extname(file).toLowerCase(); // Use toLowerCase for case-insensitivity
+            const ext = path.extname(file).toLowerCase();
 
-            if (ext === '.HEIC' || ext === '.png') { // Check for HEIC and PNG
-                const outputFileName = path.basename(file, ext) + '.webp'; // Remove extension and add .webp
-                const outputFilePath = path.join(destDir, outputFileName); // Save in destination directory
-                await convertHEICtoWebP(inputFilePath, outputFilePath);
+            console.log(`Processing file: ${file}`);
+
+            if (ext === '.heic' || ext === '.png') {
+                console.log(`Converting and compressing: ${file}`);
                 
-                // Compress the newly created WebP and save to the assets folder
-                await compressImages(outputFilePath, outputFilePath); // Compress the newly created WebP
-            } else if (ext === '.webp') { // Check for WEBP
-                const compressedFilePath = path.join(destDir, file); // Output same file name in assets
-                await compressImages(inputFilePath, compressedFilePath); // Compress existing WEBP files
+                // Use path.parse to get the name without extension
+                const { name } = path.parse(file);
+                const outputFileName = `${name}.webp`;
+                const tempFilePath = path.join(os.tmpdir(), `temp_${outputFileName}`);
+                const finalOutputPath = path.join(destDir, outputFileName);
+
+                await convertHEICtoWebP(inputFilePath, tempFilePath);
+                await compressImages(tempFilePath, finalOutputPath);
+                fs.unlinkSync(tempFilePath);
+                
+            } else if (ext === '.webp') {
+                console.log(`Compressing existing WebP: ${file}`);
+                const compressedFilePath = path.join(destDir, file);
+                await compressImages(inputFilePath, compressedFilePath);
+            } else {
+                console.log(`Skipping file with unsupported extension: ${file}`);
             }
         }
     } catch (error) {
