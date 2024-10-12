@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>02-individual-builds</title><link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.27.0/themes/prism.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.27.0/prism.min.js"></script></head><body><div class="container"><p><a href="index.html">Index</a></p><h1>2: Individual builds</h1><h2>Light sensor</h2><p>Light sensor (analog input): Connect the photo cell light sensor (CdS photoresistor) to your Arduino. Have your sketch continuously print out the light level it detects on the serial monitor at 5 second intervals.</p><blockquote><p>CdS cells are little light sensors. As the squiggly face is exposed to more light, the resistance goes down. When it&#39;s light, the resistance is about ~1KΩ, when dark it goes up to ~10KΩ.</p></blockquote><ul><li><a href="https://www.adafruit.com/product/161">Adafruit</a></li></ul><h3>Source files</h3><ul><li><a href="https://www.tinkercad.com/things/dLJOOrkPkBk/editel?sharecode=9xs5nUTewtWsfD4-hraQk-SSVEHWC6jlRYBssgM2QNc">Tinker source</a></li></ul><h3>Documentation</h3><blockquote><p>Top down view of breadboard and Arduino <img src="./assets/02-00001.webp" alt=""></p></blockquote><blockquote><p>Circuit view <img src="./assets/02-00003.webp" alt=""></p></blockquote><blockquote><p>Schematic drawing <img src="./assets/02-00004.webp" alt=""></p></blockquote><h3>Code</h3><pre><code class="language-JS">// Light sensor (analog input): Connect the photo cell light sensor (CdS photoresistor) to your Arduino. Have your sketch continuously print out the light level it detects on the serial monitor at 5 second intervals.
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>02-individual-builds</title><link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.27.0/themes/prism.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.27.0/prism.min.js"></script></head><body><div class="container"><p><a href="index.html">Index</a></p><h1>2: Individual builds</h1><ul><li><a href="#light-sensor">Light sensor</a></li><li><a href="#tilt-ball-sensor">Tilt ball sensor</a></li><li><a href="#wildcard">Wildcard:</a></li></ul><h2>Light sensor</h2><p>Light sensor (analog input): Connect the photo cell light sensor (CdS photoresistor) to your Arduino. Have your sketch continuously print out the light level it detects on the serial monitor at 5 second intervals.</p><blockquote><p>CdS cells are little light sensors. As the squiggly face is exposed to more light, the resistance goes down. When it&#39;s light, the resistance is about ~1KΩ, when dark it goes up to ~10KΩ.</p></blockquote><ul><li><a href="https://www.adafruit.com/product/161">Adafruit</a></li></ul><h3>Source files</h3><ul><li><a href="https://www.tinkercad.com/things/dLJOOrkPkBk/editel?sharecode=9xs5nUTewtWsfD4-hraQk-SSVEHWC6jlRYBssgM2QNc">TinkerCAD source</a></li></ul><h3>Documentation</h3><blockquote><p>Top down view of breadboard and Arduino <img src="./assets/02-00001.webp" alt=""></p></blockquote><blockquote><p>Circuit view <img src="./assets/02-00003.webp" alt=""></p></blockquote><blockquote><p>Schematic drawing <img src="./assets/02-00004.webp" alt=""></p></blockquote><h3>Code</h3><pre><code class="language-JS">// Light sensor (analog input): Connect the photo cell light sensor (CdS photoresistor) to your Arduino. Have your sketch continuously print out the light level it detects on the serial monitor at 5 second intervals.
 
 const int sensorLight = A0; // Photo cell (CdS photoresistor) Product ID: 161
 const int readingDelay = 5000;
@@ -15,4 +15,30 @@ void loop() {
   Serial.println(levelLight); // Print out the light level
   delay(readingDelay); // Delay between readings
 }
-</code></pre><h2>Process</h2><p>1.</p></div></body></html>
+</code></pre><hr><h2>Tilt ball sensor</h2><p>Tilt sensor (digital input): Connect the tilt sensor (digital input) to your Arduino. Have your sketch continuously print out the tilt status of the sensor.</p><blockquote><p>Tilt sensors allow you to detect orientation or inclination. They are small, inexpensive, low-power and easy-to-use. If used properly, they will not wear out... They are usually made by a cavity of some sort (cylindrical is popular, although not always) and a conductive free mass inside, such as a blob of mercury or rolling ball. One end of the cavity has two conductive elements (poles). When the sensor is oriented so that that end is downwards, the mass rolls onto the poles and shorts them, acting as a switch throw.</p></blockquote><ul><li><a href="https://cdn-learn.adafruit.com/downloads/pdf/tilt-sensor.pdf">Adafruit</a></li></ul><p><img src="./assets/02-00005.webp" alt=""></p><ul><li><a href="https://www.instructables.com/TILT-SWITCH-USING-ARDUINO-UNO-R3/">Instructables</a></li></ul><h3>Source files</h3><ul><li><a href="https://www.tinkercad.com/things/5a9fzEsl5b8/editel?sharecode=qDMhLgDma2EpROBLh82YMuBuKXSKqp3fRlGIPlQQNK8">TinkerCAD source</a></li></ul><h3>Documentation</h3><blockquote><p>Top down view of breadboard and Arduino <img src="./assets/02-00006.webp" alt=""></p></blockquote><blockquote><p>Circuit view <img src="./assets/02-00007.webp" alt=""></p></blockquote><blockquote><p>Schematic drawing <img src="./assets/02-00008.webp" alt=""></p></blockquote><blockquote><p>Demo</p><video width="360" height="640" controls><source src="./assets/02-tilt-ball.mov" type="video/mp4"></video></blockquote><h3>Code</h3><pre><code class="language-JS">// Tilt sensor (digital input): Connect the tilt sensor (digital input) to your Arduino. Have your sketch continuously print out the tilt status of the sensor.
+
+const int pinInput = 4; // Define which pin will receive input
+
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(9600);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  // 1. Store the integer value as &quot;digitalVal&quot; 
+  // 2. The value will be retrieved through our variable pinInput
+  // 3. The function digitalRead returns &quot;LOW&quot; or &quot;HIGH&quot; values (digitalRead is input)
+  // &quot;HIGH&quot; = a voltage greater than 3.0V is present at the pin (5V boards)
+  // &quot;LOW&quot; = a voltage less than 1.5V is present at the pin (5V boards)
+  int digitalVal = digitalRead(pinInput); 
+  if (digitalVal == LOW) {
+      Serial.println(&quot;Closed circuit&quot;); // The ball is in the down position connecting both contacts
+      delay(500); // so that the reading only occurs every half second
+  }
+  else {
+    Serial.println(&quot;Open circuit&quot;); // When the ball is moved away from the contacts, it opens the circuit
+    delay(500);
+  }
+}
+</code></pre><hr><h2>Wildcard</h2><p>Wildcard (your choice): Create one more build using any of the above components, or anything else you find in your kit. Experiment! Some possibilities are: a potentiometer for analog input, PWM fading with LEDs, enhancing the temperature sensor demo, a sound buzzer, etc. Use the serial monitor to show what is going on.</p></div></body></html>
