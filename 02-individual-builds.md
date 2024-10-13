@@ -5,6 +5,9 @@
 * <a href="#light-sensor">Light sensor</a>
 * <a href="#tilt-ball-sensor">Tilt ball sensor</a>
 * <a href="#wildcard">Wildcard: </a>
+* <a href="">Process and learnings</a>
+
+<span id="light-sensor"></span>
 
 ## Light sensor
 Light sensor (analog input): Connect the photo cell light sensor (CdS photoresistor) to your Arduino. Have your sketch continuously print out the light level it detects on the serial monitor at 5 second intervals.
@@ -49,7 +52,9 @@ void loop() {
 ```
 ---
 
-## Tilt ball sensor
+<span id="tilt-ball-sensor"></span>
+
+## Tilt ball sensor 
 Tilt sensor (digital input): Connect the tilt sensor (digital input) to your Arduino. Have your sketch continuously print out the tilt status of the sensor.
 
 > Tilt sensors allow you to detect orientation or inclination. They are small, inexpensive, low-power and easy-to-use. If used properly, they will not wear out... They are usually made by a cavity of some sort (cylindrical is popular, although not always) and a conductive free mass inside, such as a blob of mercury or rolling ball. One end of the cavity has two conductive elements (poles). When the sensor is oriented so that that end is downwards, the mass rolls onto the poles and shorts them, acting as a switch throw.
@@ -109,5 +114,13 @@ void loop() {
 
 ---
 
+<span id="wildcard"></span>
+
 ## Wildcard
 Wildcard (your choice): Create one more build using any of the above components, or anything else you find in your kit. Experiment! Some possibilities are: a potentiometer for analog input, PWM fading with LEDs, enhancing the temperature sensor demo, a sound buzzer, etc. Use the serial monitor to show what is going on.
+
+---
+
+## Process & Learnings
+* The meaning of HIGH (in reference to a pin) is somewhat different depending on whether a pin is set to an INPUT or OUTPUT. [See Arduino documentation.](https://docs.arduino.cc/language-reference/en/variables/constants/highLow/)
+* 
