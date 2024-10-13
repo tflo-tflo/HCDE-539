@@ -25,13 +25,11 @@ body {
     padding-bottom: 8rem;
 }
 
-/* Optional styling for headings */
 h1, h2, h3, h4, h5, h6 {
     color: #2c3e50; /* Darker color for headings */
     margin-top: 1.5em; /* Spacing above headings */
 }
 
-/* Optional styling for paragraphs */
 p {
     margin-bottom: 1em; /* Spacing between paragraphs */
 }
@@ -40,7 +38,11 @@ img {
    width: 100%; 
 }
 
-/* Styles for <code> blocks */
+blockquote {
+    padding: 0 1em;
+    border-left: #009ea4 solid 4px;
+}
+
 code {
     background-color: hsl(0, 0%, 93%);  /* Slightly lighter background */
     color: #bf005c;              /* Light text color */
@@ -48,3 +50,4 @@ code {
     border-radius: 4px;          /* Rounded corners */
     font-family: 'IBM Plex Mono', monospace; /* Consistent font */
 }
+
