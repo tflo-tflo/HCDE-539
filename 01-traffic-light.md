@@ -9,15 +9,19 @@ Create a simulation of a traffic light.
 
 ## Documentation
 > Top down view of breadboard and Arduino
+
 ![](./assets/01-00001.webp)
 
 > Jumper wires connected to ground, digital pins 10 through 12
+
 ![](./assets/01-00002.webp)
 
 > Sequence of three closed circuits, one for each traffic light
+
 ![](./assets/01-00003.webp)
 
 > Circuit view
+
 ![](./source-files/01_traffic_light/01-circuit-view.png)
 
 ## Code
