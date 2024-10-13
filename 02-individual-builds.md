@@ -21,12 +21,15 @@ Light sensor (analog input): Connect the photo cell light sensor (CdS photoresis
 
 ### Documentation
 > Top down view of breadboard and Arduino
+
 ![](./assets/02-00001.webp)
 
 > Circuit view
+
 ![](./assets/02-00003.webp)
 
 > Schematic drawing
+
 ![](./assets/02-00004.webp)
 
 ### Code
@@ -68,17 +71,20 @@ Tilt sensor (digital input): Connect the tilt sensor (digital input) to your Ard
 * [TinkerCAD source](https://www.tinkercad.com/things/5a9fzEsl5b8/editel?sharecode=qDMhLgDma2EpROBLh82YMuBuKXSKqp3fRlGIPlQQNK8)
 
 ### Documentation
-> Top down view of breadboard and Arduino
-> 
+> Top down view of breadboard and Arduino 
+
 ![](./assets/02-00006.webp)
 
 > Circuit view
+
 ![](./assets/02-00007.webp)
 
 > Schematic drawing
+
 ![](./assets/02-00008.webp)
 
 > Demo
+
 <video width="360" height="640" controls>
   <source src="./assets/02-tilt-ball.mov" type="video/mp4">
 </video>
@@ -151,9 +157,11 @@ Wildcard (your choice): Create one more build using any of the above components,
 ![](./assets/02-00009.webp)
 
 > Circuit view
+
 ![](./assets/02-00010.webp)
 
 > Schematic drawing
+
 ![](./assets/02-00011.webp)
 
 ### Code
