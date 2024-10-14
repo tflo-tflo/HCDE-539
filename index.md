@@ -7,3 +7,6 @@
 ## Assignments
 1. [Traffic light](01-traffic-light.html)
 2. [Individual builds](02-individual-builds.html)
+
+## Notes
+* [Terminology](terminology.html)
