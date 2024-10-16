@@ -5,7 +5,6 @@ Create a simulation of a traffic light.
 
 ## Source files
 * [Tinker source](https://www.tinkercad.com/things/753FnYBbkBY-01-traffic-light/editel?returnTo=https%3A%2F%2Fwww.tinkercad.com%2Fdashboard%2Fdesigns%2Fcircuits&sharecode=ZMm7zYvMayxsUarfw0B2N4YVmkvtIUCHHYaLj04mImo)
-* [Schematic (PDF)](./source-files/01-schedmatic.pdf)
 
 ## Documentation
 > Top down view of breadboard and Arduino
