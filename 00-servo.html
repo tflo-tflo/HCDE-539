@@ -1,0 +1,58 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>00-servo</title><link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.27.0/themes/prism.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.27.0/prism.min.js"></script></head><body><div class="container"><p><a href="index.html">Index</a></p><h1>Servo class assignment</h1><h2>Notes</h2><ul><li>Uses a pullup on the button</li><li>Code uses two counters, one to track the degree, the other to track the degree stop<ul><li>There&#39;s probably a more elegant solution. This one uses the idea of negative and positive integers to differentiate going up in degrees vs going down</li></ul></li></ul><h2>Documentation</h2><p><img src="./assets/00-servo.webp" alt=""></p><h2>Code</h2><pre><code class="language-JS">#include &lt;Servo.h&gt;
+#include &lt;Button.h&gt;
+
+Servo myservo;
+
+const int BUTTON_PIN = 2;
+Button butt (BUTTON_PIN, INPUT_PULLUP);
+int servoDegree;
+int count = -18;
+
+// Button controls the servo, with each click, moves the servo 10 degrees
+
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(9600);
+  Serial.println(&quot;Button and servo demo&quot;);
+  myservo.attach(9);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  int action = butt.checkButtonAction();
+
+  // when it&#39;s at the beginning, 0 degrees, count up
+  if (count &lt; 0 &amp;&amp; action == Button::CLICKED) {
+    servoDegree += 10;
+    myservo.write(servoDegree);
+    Serial.print(&quot;Degree: &quot;);
+    Serial.println(servoDegree);
+    count += 1;
+    Serial.print(&quot;Count: &quot;);
+    Serial.println(count);
+  }
+
+  // when it&#39;s at then end, 180 degrees, count down
+  if (count &gt;= 0 &amp;&amp; action == Button::CLICKED) {
+    servoDegree -= 10;
+    myservo.write(servoDegree);
+    Serial.print(&quot;Degree: &quot;);
+    Serial.println(servoDegree);
+    count += 1;
+    Serial.print(&quot;Count: &quot;);
+    Serial.println(count);
+  }
+
+  // when it&#39;s reached the end of 0, reset count
+  if (count == 18) {
+    count = -18;
+  }
+  // if (action == Button::CLICKED &amp;&amp; servoDegree &lt;= 180) {
+  //   servoDegree += 10;
+  //   myservo.write(servoDegree);
+  //   Serial.println(servoDegree);
+  // }
+  else {
+  }
+};
+</code></pre></div></body></html>

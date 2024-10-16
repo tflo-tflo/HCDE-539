@@ -8,5 +8,8 @@
 1. [Traffic light](01-traffic-light.html)
 2. [Individual builds](02-individual-builds.html)
 
+## Class exercises
+1. [Servo changes degree with each button press](00-servo.html)
+
 ## Notes
 * [Terminology](terminology.html)
