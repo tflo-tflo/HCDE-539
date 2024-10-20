@@ -7,6 +7,7 @@
 ## Assignments
 1. [Traffic light](01-traffic-light.html)
 2. [Individual builds](02-individual-builds.html)
+3. [Integrated builds](03-integrated-builds.html)
 
 ## Class exercises
 1. [Servo changes degree with each button press](00-servo.html)
