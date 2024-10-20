@@ -3,3 +3,4 @@ source-assets/
 node_modules/
 minify-HTML.js
 source-files
+template.md

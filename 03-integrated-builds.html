@@ -1,0 +1,99 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>03-integrated-builds</title><link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.27.0/themes/prism.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.27.0/prism.min.js"></script></head><body><div class="container"><p><a href="index.html">Index</a></p><h1>Integrated builds</h1><ol><li>Use a trim pot (potentiometer, or variable resistor, an analog input sensor) in combination with an LED to simulate a dimmer switch for light control. Although we said that LEDs are digital output actuators (only on or off), there is a trick you can use to fake the LED into behaving like an analog output.</li><li>Door bell: Use a button in combination with a simple piezo buzzer to create a prototype of a door bell. When you click the button, the buzzer goes off for a few seconds. For an extra challenge, you could take advantage of the feature in the button library to do something with the capability to detect a longer press as distinct from a simple button press. Be creative!</li><li>Door Opener: Use a button to simulate a person stepping on a mat outside a supermarket entrance door. When the button is triggered, the door should open, stay open for 5 seconds, and then close.</li></ol><h2>Source files</h2><ul><li><a href="https://www.tinkercad.com/things/0Tl4qEiTSuJ/editel?sharecode=lVPPhKP5lYT_n1I6WCdNQB4i8m_dSqc0DnJFyk5gzks">TinkerCAD source</a></li></ul><h2>Documentation</h2><blockquote><p>Top down view of breadboard and Arduino</p></blockquote><p><img src="./assets/03-00012.webp" alt=""></p><blockquote><p>Circuit view</p></blockquote><p><img src="./assets/03-00013.webp" alt=""></p><blockquote><p>Schematic drawing</p></blockquote><p><img src="./assets/03-00014.webp" alt=""></p><h2>Code</h2><pre><code class="language-JS">#include &lt;Button.h&gt;
+#include &lt;Servo.h&gt;
+
+// Outputs
+const int LED_FADE = 6;
+const int BUZZER_SINGLE = 5;
+const int BUZZER_MUSIC = 4;
+const int DOOR = 12;
+// Inputs
+const int POTENTIOMETER = A0;
+const int BUTTON_BUZZER = 3;
+const int BUTTON_DOOR = 2;
+
+// Configurable variables
+int potVal = 0; // Set inital value of the potentiomater
+int prevPotVal = 0; // Capture previous potentiometer value
+int potThreshold = 5;
+int delayTimeSound = 500; // Time between buzzer tones
+int doorOpen = 180; // Door opens to 180 degrees
+int delayTimeDoor = 5000;
+int doorCloses = 0; // Door closes to 0 degrees
+
+
+// Declare a button and a servo
+Button buttSound (BUTTON_BUZZER);
+Button buttDoor (BUTTON_DOOR);
+Servo myservo;
+
+void setup() {
+  // Tell Serial what this file will do
+  Serial.begin(9600);
+  Serial.println(&quot;Part 1: Potentiometer --&gt; PWM LED&quot;);
+  Serial.println(&quot;Part 2: Button --&gt; sound&quot;);
+  Serial.println(&quot;Part 3: Button --&gt; servo door&quot;);
+  Serial.println();
+  // Setup pins
+  pinMode(LED_FADE, OUTPUT);
+  pinMode(BUTTON_BUZZER, INPUT);
+  pinMode(BUZZER_SINGLE, OUTPUT);
+  pinMode(BUZZER_MUSIC, OUTPUT);
+  myservo.attach(DOOR);
+};
+
+void loop() {
+  // Part 1 - Light
+  // Read the value from the analog pin; store its value in the variable &quot;potVal&quot;
+  potVal = analogRead(POTENTIOMETER);
+  // Output to LED the potentiometer&#39;s value; divides any value between 0-1023 into 0-255; print potentiometer value
+  analogWrite(LED_FADE, potVal/4); 
+  
+  if (abs(prevPotVal - potVal) &gt;= potThreshold) {
+    Serial.print(&quot;Current: &quot;);
+    Serial.println(potVal);
+    Serial.println(&quot;&quot;);
+  } else {
+    // Serial.print(&quot;No change: &quot;);
+    // Serial.println(potVal);
+    // Serial.println(&quot;&quot;);
+  };
+
+  prevPotVal = potVal;
+
+  // Part 2 - Sound
+  // check the status of the button (what happened?)
+  int buttonStateSound = buttSound.checkButtonAction();
+  // When button is pressed, trigger active buzzer (play single tone)
+  if (buttonStateSound == Button::CLICKED) {
+    digitalWrite(BUZZER_SINGLE, HIGH);
+    Serial.println(&quot;Button pressed - Active buzzer&quot;);
+  }
+  // When button is pressed, trigger passive buzzer (play music)
+  else if (buttonStateSound == Button::HELD_CLICKED) {
+    tone(BUZZER_MUSIC, 440);
+    delay(delayTimeSound);
+    tone(BUZZER_MUSIC, 494);
+    delay(delayTimeSound);
+    tone(BUZZER_MUSIC, 523);
+    delay(delayTimeSound);
+    Serial.println(&quot;Button pressed - Passive buzzer&quot;);
+  }
+  else {
+    digitalWrite(BUZZER_SINGLE, LOW);
+    noTone(BUZZER_MUSIC);
+  };
+
+
+  // Part 3 - Door opener
+  // check the status of the button (what happened?)
+  int buttonStateDoor = buttDoor.checkButtonAction();
+  // When button is pressed, rotate servo 180 degrees
+  if (buttonStateDoor == Button::CLICKED) {
+    myservo.write(doorOpen);
+    Serial.println(&quot;Door opens&quot;);
+    delay(delayTimeDoor);
+    myservo.write(doorCloses);
+  }
+  else {};
+};
+</code></pre><h2>Process &amp; Learnings</h2><ul><li>Serial monitor only prints the potentiometer reading correctly (when diff between prev and current reading is above a certain threshold) when it&#39;s also printing 0 diff between prev and current.</li><li>When triggering the servo button, it changes the potentiometer!</li></ul></div></body></html>
