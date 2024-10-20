@@ -33,9 +33,9 @@ Definition of 10-bit:
 
 **Ohm's Law:** Linear relationship between current, voltage, and resistance. To calculate the current; `I = V/R`.
 
-**Pull up:** ![](/assets/pull-up.webp)
+**Pull up:** ![](./assets/pull-up.webp)
 
-**Pull down:** ![](/assets/pull-down.webp)
+**Pull down:** ![](./assets/pull-down.webp)
 
 **PWM:** Arduinos don't have true analog output (DAC, or Digital-to-Analog Conversion). Instead, they simulate analog output using Pulse-Width Modulation (PWM) on specific pins. In this process, the Arduino rapidly switches the output pin on and off at a certain frequency. By varying the "on" time relative to the "off" time (the duty cycle), the average voltage output can be controlled. This mapping occurs because an 8-bit number can represent 256 different values (2^8 = 256). 
 * Why the mapping to 0–255?
