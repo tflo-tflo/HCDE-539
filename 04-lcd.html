@@ -1,0 +1,40 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>04-lcd</title><link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.27.0/themes/prism.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.27.0/prism.min.js"></script></head><body><div class="container"><p><a href="index.html">Index</a></p><h1>LCD messages</h1><h2>Assignment description</h2><blockquote><p>The purpose of this assignment is to use an LCD attached to your Arduino to display messages. This will afford you many more possibilities for creating interactive systems that can stand alone, without being tethered to a laptop.</p><p>After that, to do something more concrete, develop an Arduino program that displays actual messages under control of your program on it. This is done by using the various software library commands to set the cursor position of the LCD, write text, erase the screen, etc.</p><p>You can develop your own application, or you can simply enhance one of your other builds to show messages on the LCD as well as on the serial monitor.</p></blockquote><p>The following build will do a simple &quot;Loading...&quot; message that animates in 3 ellipses, clears it, and re-prints the ellipses again.</p><h3>Source files</h3><ul><li><a href="https://docs.arduino.cc/learn/electronics/lcd-displays/#hello-world-example:~:text=breadboard-,Circuit,-Note%20that%20this">Circuit and schematic diagrams</a></li></ul><h3>Documentation</h3><blockquote><p>Top down view of breadboard and Arduino</p></blockquote><p><img src="./assets/04-00001.webp" alt=""></p><h3>Code</h3><pre><code class="language-JS">#include &lt;LiquidCrystal.h&gt;
+
+// initialize the library by associating any needed LCD interface pin
+// with the arduino pin number it is connected to
+const int rs = 12, en = 11, d4 = 5, d5 = 4, d6 = 3, d7 = 2;
+LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
+
+// Changing variables
+int countEllipsis = 0;
+
+void setup() {
+  Serial.begin(9600);
+  // set up the LCD&#39;s number of columns and rows:
+  lcd.begin(16, 2);
+  // Print a message to the LCD.
+  lcd.print(&quot;Loading&quot;);
+}
+
+void loop() {
+  // Set cursor to after &quot;Loading&quot; string
+  lcd.setCursor(7,0);
+  // Clear everything after first row, slot 7
+  lcd.print(&quot;   &quot;);
+  // Set cursor back to after &quot;Loading&quot;
+  lcd.setCursor(7,0);
+  // Add ellipsis
+  for (int i = 0; i &lt; countEllipsis; i++) {
+    lcd.print(&quot;.&quot;);
+  }
+  // Add to our tracker and set a conditional that, once met, will reset our tracke
+  countEllipsis++;
+  if (countEllipsis &gt; 3) {
+    countEllipsis = 0;
+  }
+  // Debug
+  Serial.println(countEllipsis);
+  // Add a pause between each ellipsis
+  delay(500);
+}
+</code></pre><h3>Process &amp; Learnings</h3><ul><li><a href="https://docs.arduino.cc/libraries/liquidcrystal/">LiquidCrystal functions documentation</a></li><li>At first I couldn&#39;t figure out why the first ellipsis wasn&#39;t getting cleared. Turns out you need to clear and reposition the cursor each time (<a href="https://forum.arduino.cc/t/clearing-characters-in-lcd-print/379481/4">Arduino forums</a>).</li></ul></div></body></html>
