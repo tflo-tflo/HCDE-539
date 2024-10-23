@@ -1,8 +1,8 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>03-integrated-builds</title><link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.27.0/themes/prism.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.27.0/prism.min.js"></script></head><body><div class="container"><p><a href="index.html">Index</a></p><h1>Integrated builds</h1><ol><li>Use a trim pot (potentiometer, or variable resistor, an analog input sensor) in combination with an LED to simulate a dimmer switch for light control. Although we said that LEDs are digital output actuators (only on or off), there is a trick you can use to fake the LED into behaving like an analog output.</li><li>Door bell: Use a button in combination with a simple piezo buzzer to create a prototype of a door bell. When you click the button, the buzzer goes off for a few seconds. For an extra challenge, you could take advantage of the feature in the button library to do something with the capability to detect a longer press as distinct from a simple button press. Be creative!</li><li>Door Opener: Use a button to simulate a person stepping on a mat outside a supermarket entrance door. When the button is triggered, the door should open, stay open for 5 seconds, and then close.</li></ol><h2>Source files</h2><ul><li><a href="https://www.tinkercad.com/things/0Tl4qEiTSuJ/editel?sharecode=lVPPhKP5lYT_n1I6WCdNQB4i8m_dSqc0DnJFyk5gzks">TinkerCAD source</a></li></ul><h2>Documentation</h2><blockquote><p>Top down view of breadboard and Arduino</p></blockquote><p><img src="./assets/03-00012.webp" alt=""></p><blockquote><p>Circuit view</p></blockquote><p><img src="./assets/03-00013.webp" alt=""></p><blockquote><p>Schematic drawing</p></blockquote><p><img src="./assets/03-00014.webp" alt=""></p><h2>Code</h2><pre><code class="language-JS">#include &lt;Button.h&gt;
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>03-integrated-builds</title><link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.27.0/themes/prism.min.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.27.0/prism.min.js"></script></head><body><div class="container"><p><a href="index.html">Index</a></p><h1>Integrated builds</h1><ol><li>Use a trim pot (potentiometer, or variable resistor, an analog input sensor) in combination with an LED to simulate a dimmer switch for light control. Although we said that LEDs are digital output actuators (only on or off), there is a trick you can use to fake the LED into behaving like an analog output.</li><li>Door bell: Use a button in combination with a simple piezo buzzer to create a prototype of a door bell. When you click the button, the buzzer goes off for a few seconds. For an extra challenge, you could take advantage of the feature in the button library to do something with the capability to detect a longer press as distinct from a simple button press. Be creative!</li><li>Door Opener: Use a button to simulate a person stepping on a mat outside a supermarket entrance door. When the button is triggered, the door should open, stay open for 5 seconds, and then close.</li></ol><h2>Source files</h2><ul><li><a href="https://www.tinkercad.com/things/0Tl4qEiTSuJ/editel?sharecode=lVPPhKP5lYT_n1I6WCdNQB4i8m_dSqc0DnJFyk5gzks">TinkerCAD source</a></li></ul><h2>Documentation</h2><blockquote><p>Top down view of breadboard and Arduino</p></blockquote><p><img src="./assets/03-00012.webp" alt=""></p><blockquote><p>Circuit view</p></blockquote><p><img src="./assets/03-00013.webp" alt=""></p><blockquote><p>Schematic drawing</p></blockquote><p><img src="./assets/03-00014.webp" alt=""></p><video width="360" height="640" controls><source src="./assets/03-integrated.mov" type="video/mp4"></video><h2>Code</h2><pre><code class="language-JS">#include &lt;Button.h&gt;
 #include &lt;Servo.h&gt;
 
 // Outputs
-const int LED_FADE = 6;
+const int LED_FADE = 6; // Does this need an &quot;A&quot; prefix for analogWrite?
 const int BUZZER_SINGLE = 5;
 const int BUZZER_MUSIC = 4;
 const int DOOR = 12;
@@ -48,8 +48,11 @@ void loop() {
   // Output to LED the potentiometer&#39;s value; divides any value between 0-1023 into 0-255; print potentiometer value
   analogWrite(LED_FADE, potVal/4); 
   
+  // Serial.println(prevPotVal-potVal); As a way to debug, figure out the value that&#39;s getting outputted.
+
   if (abs(prevPotVal - potVal) &gt;= potThreshold) {
     Serial.print(&quot;Current: &quot;);
+    prevPotVal = potVal;
     Serial.println(potVal);
     Serial.println(&quot;&quot;);
   } else {
@@ -58,7 +61,7 @@ void loop() {
     // Serial.println(&quot;&quot;);
   };
 
-  prevPotVal = potVal;
+  // prevPotVal = potVal; When this was outside the statement, the code was running too quick for the if statement to run, so the statement never became true
 
   // Part 2 - Sound
   // check the status of the button (what happened?)
@@ -93,7 +96,10 @@ void loop() {
     Serial.println(&quot;Door opens&quot;);
     delay(delayTimeDoor);
     myservo.write(doorCloses);
+    Serial.println(&quot;Door closes&quot;);
   }
   else {};
+
+  delay(20);
 };
 </code></pre><h2>Process &amp; Learnings</h2><ul><li>Serial monitor only prints the potentiometer reading correctly (when diff between prev and current reading is above a certain threshold) when it&#39;s also printing 0 diff between prev and current.</li><li>When triggering the servo button, it changes the potentiometer!</li></ul></div></body></html>

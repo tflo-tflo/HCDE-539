@@ -22,6 +22,10 @@
 
 ![](./assets/03-00014.webp)
 
+<video width="360" height="640" controls>
+  <source src="./assets/03-integrated.mov" type="video/mp4">
+</video>
+
 ## Code
 
 ``` JS
@@ -29,7 +33,7 @@
 #include <Servo.h>
 
 // Outputs
-const int LED_FADE = 6;
+const int LED_FADE = 6; // Does this need an "A" prefix for analogWrite?
 const int BUZZER_SINGLE = 5;
 const int BUZZER_MUSIC = 4;
 const int DOOR = 12;
@@ -75,8 +79,11 @@ void loop() {
   // Output to LED the potentiometer's value; divides any value between 0-1023 into 0-255; print potentiometer value
   analogWrite(LED_FADE, potVal/4); 
   
+  // Serial.println(prevPotVal-potVal); As a way to debug, figure out the value that's getting outputted.
+
   if (abs(prevPotVal - potVal) >= potThreshold) {
     Serial.print("Current: ");
+    prevPotVal = potVal;
     Serial.println(potVal);
     Serial.println("");
   } else {
@@ -85,7 +92,7 @@ void loop() {
     // Serial.println("");
   };
 
-  prevPotVal = potVal;
+  // prevPotVal = potVal; When this was outside the statement, the code was running too quick for the if statement to run, so the statement never became true
 
   // Part 2 - Sound
   // check the status of the button (what happened?)
@@ -120,8 +127,11 @@ void loop() {
     Serial.println("Door opens");
     delay(delayTimeDoor);
     myservo.write(doorCloses);
+    Serial.println("Door closes");
   }
   else {};
+
+  delay(20);
 };
 ```
 
