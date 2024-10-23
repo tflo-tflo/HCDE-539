@@ -63,6 +63,22 @@ void loop() {
 }
 ```
 
+### Serial monitor output sample
+``` JS
+0
+1
+2
+3
+0
+1
+2
+3
+0
+1
+2
+3
+```
+
 ### Process & Learnings
 * [LiquidCrystal functions documentation](https://docs.arduino.cc/libraries/liquidcrystal/)
 * At first I couldn't figure out why the first ellipsis wasn't getting cleared. Turns out you need to clear and reposition the cursor each time ([Arduino forums](https://forum.arduino.cc/t/clearing-characters-in-lcd-print/379481/4)).
