@@ -27,9 +27,11 @@ Definition of 10-bit:
 
 **Current:** `I`, the flow of charged particles through a conductor, measured in amps.
 
-**Diode:** A diode is a two-terminal electronic component that conducts current primarily in one direction (asymmetric conductance). It has low (ideally zero) resistance in one direction and high (ideally infinite) resistance in the other.
+**Diode:** A diode is a two-terminal electronic component that conducts current primarily in one direction (asymmetric conductance). It has low (ideally zero) resistance in one direction and high (ideally infinite) resistance in the other. An LED is an example of a diode.
 
 **Insulators:** Materials with high levels of resistance/low conductivity.
+
+**Joule:** Unit of energy. 1 joule is the amount of energy needed to move an object with a force of 1 Newton (e.g. weight of a small apple) over a distance of 1 meter.
 
 **Ohm's Law:** Linear relationship between current, voltage, and resistance. To calculate the current; `I = V/R`.
 
