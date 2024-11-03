@@ -136,6 +136,7 @@ void blinker(int _led, int _onTime, int _offTime) {
   - The code for the blinker works for one LED but I couldn't reconcile both LEDs working at the same time. When I extracted the code back into the loop, duplicated one for each LED, and assigned a unique global timer variable, then the LEDs blinked correctly. 
 - New programming terms
   - When it comes to capturing time, the count can climb quickly. Using both long (for long storage) and unsigned (to keep the number in the positive) prevented the build from breaking.
-  - [unsigned int](https://docs.arduino.cc/language-reference/en/variables/data-types/unsignedInt/)
-  - [long](https://docs.arduino.cc/language-reference/en/variables/data-types/long/)
-  - [static](https://docs.arduino.cc/language-reference/en/variables/variable-scope-and-qualifiers/static/)
+    - [unsigned int](https://docs.arduino.cc/language-reference/en/variables/data-types/unsignedInt/)
+    - [long](https://docs.arduino.cc/language-reference/en/variables/data-types/long/)
+  - To ensure the a variable doesn't get re-assigned to its initialized value, prefix it with `static` (otherwise when it loops back it reset it back to the initialized value)
+    - [static](https://docs.arduino.cc/language-reference/en/variables/variable-scope-and-qualifiers/static/)
