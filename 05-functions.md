@@ -1,6 +1,8 @@
 [Index](index.html)
 
 # Functions
+
+## Assignment description
 DO NOT USE ChatGPT or any other AI to write code for this assignment .
 
 For this assignment you will write two (2) functions:
@@ -9,12 +11,13 @@ Function 1. Takes a pin number as an argument and return a sensor reading as an 
 
 Function 2. Takes an Int and uses it to fade or blinks an LED
 
-## Assignment description
+## Function 1
 
-### Source files
-* [TinkerCAD source](https://www.tinkercad.com/things/iF6CzltskmB/editel?returnTo=%2Fdashboard%2Fdesigns%2Fcircuits&sharecode=g0FQ-bh2h9p4Jq9OYQSrg4UjInJ-FF7-mQ9ecc69fnw)
+### Source files: Function 1
+* [TinkerCAD source](https://www.tinkercad.com/things/iF6CzltskmB-05-functions)
 
-### Documentation
+### Documentation: Function 1
+  
 > Top down view of breadboard and Arduino
 
 ![](./assets/05-00001.webp)
@@ -27,34 +30,22 @@ Function 2. Takes an Int and uses it to fade or blinks an LED
 
 ![](./assets/05-00003.webp)
 
-> Trying to figure out how the timing was going to work
 
-![](./assets/05-00004.webp)
-
-### Code
+### Code: Function 1
 
 ``` JS
-// Outputs
-const int LED_GREEN = 12;
-const int LED_YELLOW = 8; 
-
 // Inputs
 const int SENSOR_LIGHT = A0;
-const int SENSOR_TEMP = A1;
 const int SENSOR_POT = A4;
 
 // Run
 void setup() {
   Serial.begin(9600);
-  pinMode(LED_GREEN, OUTPUT);
-  pinMode(LED_YELLOW, OUTPUT);
-}
+ }
 
 void loop() {
   sensor(SENSOR_LIGHT);
   sensor(SENSOR_POT);  
-  blinker(LED_GREEN, 2000, 1000);
-  blinker(LED_YELLOW, 500, 500);
 }
 
 // === Functions ===
@@ -68,6 +59,48 @@ int sensor(int _sensor) {
   sensorRaw = analogRead(_sensor);
   sensorMapped = sensorRaw/10.23;
   return sensor;
+}
+```
+
+## Function 2
+
+### Source files: Function 2
+* [TinkerCAD source](https://www.tinkercad.com/things/i4ivWuVKgQU-05-functions-2)
+
+### Documentation: Function 2
+> Top down view of breadboard and Arduino
+
+![](./assets/05-00004.webp)
+
+> Circuit view
+
+![](./assets/05-00005.webp)
+
+> Schematic drawing
+
+![](./assets/05-00006.webp)
+
+> Trying to figure out how the timing was going to work
+
+![](./assets/05-00007.webp)
+
+### Code: Function 2
+
+``` JS
+// Outputs
+const int LED_GREEN = 12;
+const int LED_YELLOW = 8; 
+
+// Run
+void setup() {
+  Serial.begin(9600);
+  pinMode(LED_GREEN, OUTPUT);
+  pinMode(LED_YELLOW, OUTPUT);
+}
+
+void loop() { 
+  blinker(LED_GREEN, 2000, 1000);
+  blinker(LED_YELLOW, 500, 500);
 }
 
 // Function 2. Takes an Int and uses it to fade or blink an LED
@@ -94,9 +127,15 @@ void blinker(int _led, int _onTime, int _offTime) {
     digitalWrite(_led, HIGH);
   }
 }
+
 ```
 
 ### Process & Learnings
 - Blinker
   - To get a sense for what should happen when, I built a spreadsheet. I found this much easier to track and quicker to iterate the initial draft than it was to look at the Serial output.
   - The code for the blinker works for one LED but I couldn't reconcile both LEDs working at the same time. When I extracted the code back into the loop, duplicated one for each LED, and assigned a unique global timer variable, then the LEDs blinked correctly. 
+- New programming terms
+  - When it comes to capturing time, the count can climb quickly. Using both long (for long storage) and unsigned (to keep the number in the positive) prevented the build from breaking.
+  - [unsigned int](https://docs.arduino.cc/language-reference/en/variables/data-types/unsignedInt/)
+  - [long](https://docs.arduino.cc/language-reference/en/variables/data-types/long/)
+  - [static](https://docs.arduino.cc/language-reference/en/variables/variable-scope-and-qualifiers/static/)
