@@ -16,11 +16,12 @@ Whatever tool you use, your design must utilize both cutting and engraving, and 
 
 ### Documentation
 > Design file in Cuttle
-
 ![](./assets/06-00001.webp)
 
-> Box
+> Box side showing text
+![](./assets/06-00002.webp)
 
-![](./assets/)
+> Box side showing engraving (raster)
+![](./assets/06-00003.webp)
 
 ### Process & Learnings
