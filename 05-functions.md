@@ -57,7 +57,7 @@ int sensor(int _sensor) {
   int sensorMapped;
   // Get reading, map result to 1-100
   sensorRaw = analogRead(_sensor);
-  sensorMapped = sensorRaw/10.23;
+  sensorMapped = map(sensorRaw, 0, 1023, 1, 100);
   return sensor;
 }
 ```

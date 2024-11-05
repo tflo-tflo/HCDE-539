@@ -21,7 +21,7 @@ int sensor(int _sensor) {
   int sensorMapped;
   // Get reading, map result to 1-100
   sensorRaw = analogRead(_sensor);
-  sensorMapped = sensorRaw/10.23;
+  sensorMapped = map(sensorRaw, 0, 1023, 1, 100);
   return sensor;
 }
 </code></pre><h2>Function 2</h2><h3>Source files: Function 2</h3><ul><li><a href="https://www.tinkercad.com/things/i4ivWuVKgQU-05-functions-2">TinkerCAD source</a></li></ul><h3>Documentation: Function 2</h3><blockquote><p>Top down view of breadboard and Arduino</p></blockquote><p><img src="./assets/05-00004.webp" alt=""></p><blockquote><p>Circuit view</p></blockquote><p><img src="./assets/05-00005.webp" alt=""></p><blockquote><p>Schematic drawing</p></blockquote><p><img src="./assets/05-00006.webp" alt=""></p><blockquote><p>Trying to figure out how the timing was going to work</p></blockquote><p><img src="./assets/05-00007.webp" alt=""></p><h3>Code: Function 2</h3><pre><code class="language-JS">// Outputs
