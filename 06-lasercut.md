@@ -15,9 +15,9 @@ Whatever tool you use, your design must utilize both cutting and engraving, and 
 * Duplicated from Cuttle Labs ([Open box with finger joints](https://cuttle.xyz/@cuttle/Open-Box-with-Finger-Joints-D2ugGEvYUNfd)) [Cuttle source](https://cuttle.xyz/@tflo/Open-Box-with-Finger-Joints-oh2qPcIg7soZ) 
 
 ### Documentation
-> Design file
+> Design file in Cuttle
 
-![](./assets/)
+![](./assets/06-00001.webp)
 
 > Box
 
